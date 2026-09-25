@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sürüş Scan Coach — MVP</title>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas"></canvas>
+      <div id="hud">
+        <div id="hud-top-left">
+          <div id="hud-top">
+            <div class="panel">
+              <div class="label">Hız</div>
+              <div id="speed-val" class="value">0</div>
+              <div class="unit">km/h</div>
+            </div>
+            <div class="panel">
+              <div class="label">Hedef</div>
+              <div id="target-val" class="value">—</div>
+              <div class="unit">m</div>
+            </div>
+            <div class="panel">
+              <div class="label">Waypoint</div>
+              <div id="wp-val" class="value">0/0</div>
+            </div>
+            <div class="panel">
+              <div class="label">Süre</div>
+              <div id="time-val" class="value">0:00</div>
+            </div>
+          </div>
+          <div id="profile-chip"><span id="profile-label">Eğitim / Kalibrasyon (profil yok)</span> · <span id="mode-label">Mod: Kalibrasyon</span> · <span id="cam-label">İç açı (FP)</span></div>
+          <div id="metrics-strip"></div>
+        </div>
+        <div id="wrongway-banner">TERS YÖN — Sağ şeritte ileri (önün +Z), sol şeritte geri</div>
+        <div id="alerts"></div>
+        <div id="mirror-left" class="mirror-frame"><span class="mirror-tag">Sol ayna</span></div>
+        <div id="mirror-right" class="mirror-frame"><span class="mirror-tag">Sağ ayna</span></div>
+        <div id="minimap-wrap">
+          <div id="minimap-wrongway" aria-live="polite"></div>
+          <canvas id="minimap-canvas" width="168" height="168"></canvas>
+          <div id="minimap-label">Harita · ok = hedef</div>
+        </div>
+        <div id="hud-bottom">
+          <div id="controls-hint">WASD / Oklar · Space = ayna/omuz proxy (eye-tracking değil) · R = reset · C = kamera</div>
+          <div id="hud-bottom-right">
+            <button id="btn-train-finish" type="button" class="btn-train" title="Kalibrasyon baseline'ını şimdi bitir">Kalibrasyonu Bitir</button>
+            <button id="btn-train-extend" type="button" class="btn-train" title="Kalibrasyonu 30 sn uzat">Kalibrasyonu Uzat</button>
+            <button id="btn-calib-save" type="button" class="btn-train hidden" title="Yalnızca temiz oturumda">Kalibrasyonu kaydet</button>
+            <button id="btn-camera" type="button">Kamera</button>
+            <button id="btn-profiles" type="button">Profiller</button>
+            <button id="btn-karne" type="button">Sürücü Karnesi</button>
+            <button id="end-btn" type="button">Oturumu Bitir</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="profiles-overlay" class="overlay hidden">
+        <div id="profiles-panel" class="overlay-panel"></div>
+      </div>
+
+      <div id="karne-overlay" class="overlay hidden">
+        <div id="karne-panel" class="overlay-panel"></div>
+      </div>
+
+      <div id="report-overlay" class="overlay hidden">
+        <div id="report-panel">
+          <div id="report-actions">
+            <button id="download-report" type="button">HTML İndir</button>
+            <button id="close-report" type="button">Kapat / Tekrar Sür</button>
+          </div>
+          <div id="report-content"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
